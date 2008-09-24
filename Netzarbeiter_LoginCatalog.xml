@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Netzarbeiter_LoginCatalog>
+			<active>true</active>
+			<codePool>community</codePool>
+		</Netzarbeiter_LoginCatalog>
+	</modules>
+</config>

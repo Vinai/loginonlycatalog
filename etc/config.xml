@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<config>
+
+	<modules>
+		<Netzarbeiter_LoginCatalog>
+			<version>1.0.3</version>
+		</Netzarbeiter_LoginCatalog>
+	</modules>
+
+	<global>
+		<models>
+			<logincatalog>
+				<class>Netzarbeiter_LoginCatalog_Model</class>
+			</logincatalog>
+		</models>
+
+		<resources>
+			<logincatalog_setup>
+				<use>default_setup</use>
+			</logincatalog_setup>
+			<logincatalog_write>
+				<use>default_write</use>
+			</logincatalog_write>
+			<logincatalog_read>
+				<use>default_read</use>
+			</logincatalog_read>
+		</resources>
+	</global>
+
+	<frontend>
+		<events>
+			<catalog_product_collection_load_after>
+				<observers>
+					<loginCatalogProductCollectionLoad>
+						<type>singleton</type>
+						<class>logincatalog/observer</class>
+						<method>loginCatalogProductCollectionLoadEvent</method>
+					</loginCatalogProductCollectionLoad>
+				</observers>
+			</catalog_product_collection_load_after>
+
+			<catalog_product_load_after>
+				<observers>
+					<loginCatalogProductLoad>
+						<type>singleton</type>
+						<class>logincatalog/observer</class>
+						<method>loginCatalogProductLoadEvent</method>
+					</loginCatalogProductLoad>
+				</observers>
+			</catalog_product_load_after>
+		</events>
+	</frontend>
+
+	<default>
+		<catalog>
+			<logincatalog>
+				<disable_ext>0</disable_ext>
+				<message></message>
+			</logincatalog>
+		</catalog>
+	</default>
+
+	<adminhtml>
+        <translate>
+            <modules>
+                <Netzarbeiter_LoginCatalog>
+                     <files>
+                          <default>Netzarbeiter_LoginCatalog.csv</default>
+                     </files>
+                </Netzarbeiter_LoginCatalog>
+            </modules>
+        </translate>
+	</adminhtml>
+
+</config>
