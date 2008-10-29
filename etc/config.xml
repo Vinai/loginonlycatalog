@@ -3,7 +3,7 @@
 
 	<modules>
 		<Netzarbeiter_LoginCatalog>
-			<version>1.0.3</version>
+			<version>1.0.4</version>
 		</Netzarbeiter_LoginCatalog>
 	</modules>
 
@@ -13,6 +13,18 @@
 				<class>Netzarbeiter_LoginCatalog_Model</class>
 			</logincatalog>
 		</models>
+		<blocks>
+			<catalog>
+				<rewrite>
+					<navigation>Netzarbeiter_LoginCatalog_Block_Navigation</navigation>
+				</rewrite>
+			</catalog>
+		</blocks>
+		<helpers>
+			<logincatalog>
+				<class>Netzarbeiter_LoginCatalog_Helper</class>
+			</logincatalog>
+		</helpers>
 
 		<resources>
 			<logincatalog_setup>
@@ -55,6 +67,7 @@
 		<catalog>
 			<logincatalog>
 				<disable_ext>0</disable_ext>
+				<hide_categories>0</hide_categories>
 				<message></message>
 			</logincatalog>
 		</catalog>

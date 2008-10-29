@@ -26,10 +26,9 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 */
 	protected function _redirectToLoginPage()
 	{
-		if ($message = $this->_getConfig('message')) {
+		if ($message = Mage::helper('logincatalog')->getConfig('message')) {
 			Mage::getSingleton('customer/session')->addNotice($message);
 		}
-		//Mage::app()->getResponse()->setRedirect(Mage::helper('adminhtml')->getUrl("customer/account/login", array('extra'=>'params', 'go'=>'here'))); 
 		Mage::app()->getResponse()->setRedirect(Mage::helper('adminhtml')->getUrl("customer/account/login")); 
 	}
 
@@ -40,7 +39,7 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 */
 	public function loginCatalogProductLoadEvent($observer)
 	{
-		if (! $this->_moduleActive()) return;
+		if (! Mage::helper('logincatalog')->moduleActive()) return;
 
 		if (! Mage::getSingleton('customer/session')->isLoggedIn()) {
 
@@ -57,29 +56,12 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 */
 	public function loginCatalogProductCollectionLoadEvent($observer)
 	{
-		if (! $this->_moduleActive()) return;
+		if (! Mage::helper('logincatalog')->moduleActive()) return;
 
 		if (! Mage::getSingleton('customer/session')->isLoggedIn()) {
 			// redirect to login page
 			$this->_redirectToLoginPage();
 		}
-	}
-
-	/**
-	 * Check if the extension has been disabled in the system configuration
-	 */
-	protected function _moduleActive()
-	{
-		return ! (bool) $this->_getConfig('disable_ext');
-	}
-
-	/**
-	 * Return the config value for the passed key
-	 */
-	protected function _getConfig($key)
-	{
-		$path = 'catalog/logincatalog/' . $key;
-		return Mage::getStoreConfig($path, Mage::app()->getStore());
 	}
 }
 

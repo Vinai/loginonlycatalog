@@ -24,9 +24,6 @@ This small extension requires a customer to be logged in order to view products 
 If the customer navigates to a page that contains a product or a product collection, she will be
 redirected to the account login page.
 
-The module overrides no classes and only uses the observer/event model, so it
-should play well with other modules.
-
 This Module was designed to work with the Module Netzarbeiter_CustomerActivation, which
 only allows customers to log in after they have been activated in the adminhtml interface.
 
@@ -34,27 +31,16 @@ only allows customers to log in after they have been activated in the adminhtml 
 The configuration for this module can be found in
 System > Configuration > Catalog > Login only catalog
 
-If you want to hide the catalog navigation to customers while the are logged out, you
-can use this in your templates:
+There you can disable the module on a global/website/store basis, and also choose to
+hide the category navigation.
 
-<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
-	[... navigation code here ...]
-<?php endif; ?>
-
-The files you will have to alter depend on your skin. In my case they were
-app/design/frontend/default/my-skin/template/catalog/navigation/top.phtml
-app/design/frontend/default/my-skin/template/catalog/navigation/left.phtml
-
-
-I'm thinking about overriding Mage_Catalog_Helper_Category::getStoreCategories() so
-the template modification wouldn't be required any more, but at the moment I believe
-having the choice to let customers see the categories in the navigation while logged
-out is the better option.
-If you think otherwise please let me know.
+Overriden core classes:
+Mage_Catalog_Block_Navigation
+ - add the login state to the cache key
 
 
 TODO:
-- Disable the catalog navigation within the module, so the templates don't need to be modified.
+- Make this thing use customer groups, and make categories and products viewable only by selected group(s)
 
 
 If you have ideas for improvements or find bugs, please send them to vinai@netzarbeiter.com,
