@@ -26,7 +26,7 @@ redirected to the account login page.
 
 This Module was designed to work with the Module Netzarbeiter_CustomerActivation, which
 only allows customers to log in after they have been activated in the adminhtml interface.
-There also is the Netzarbeiter_GroupsCatalog extension which allows you to hide Categories
+There also is the <a href="http://www.magentocommerce.com/extension/635">Netzarbeiter_GroupsCatalog</a> extension which allows you to hide Categories
 and/or groups depending on the customers groups. Installing this extension together with
 the Customer Groups Catalog Extension will probably make no sense, so you have to decide
 what suits your needs better.
