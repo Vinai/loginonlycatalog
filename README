@@ -26,6 +26,10 @@ redirected to the account login page.
 
 This Module was designed to work with the Module Netzarbeiter_CustomerActivation, which
 only allows customers to log in after they have been activated in the adminhtml interface.
+There also is the Netzarbeiter_GroupsCatalog extension which allows you to hide Categories
+and/or groups depending on the customers groups. Installing this extension together with
+the Customer Groups Catalog Extension will probably make no sense, so you have to decide
+what suits your needs better.
 
 
 The configuration for this module can be found in
@@ -38,10 +42,7 @@ Overriden core classes:
 Mage_Catalog_Block_Navigation
  - add the login state to the cache key
 
-
-TODO:
-- Make this thing use customer groups, and make categories and products viewable only by selected group(s)
-
+Thanks to SeL for the french translation!
 
 If you have ideas for improvements or find bugs, please send them to vinai@netzarbeiter.com,
 with Netzarbeiter_LoginCatalog as part of the subject line.
