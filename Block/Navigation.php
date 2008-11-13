@@ -36,14 +36,18 @@
 class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navigation
 {
 	/**
-	 * Set this so the navigation is cached depending on the login state
-	 * otherwise, the cache navigation could be shown to a logged in
-	 * customer, or vica versa.
+	 * Set this so the navigation is cached depending on the login state.
+	 * Otherwise, the cache navigation could be shown to a logged in customer, or vica versa.
+	 * 
+	 * Use the customer group instead of the login state so this extension compatible
+	 * with the Netzarbeiter_GroupsCatalog extension, in case both extensions are
+	 * installled at the same time.
 	 */
     public function getCacheKey()
     {
 		$key = parent::getCacheKey();
-		$key .= intval(Mage::getSingleton('customer/session')->isLoggedIn());
+		$key .= Mage::getSingleton('customer/session')->getCustomerGroupId();
+		//$key .= intval(Mage::getSingleton('customer/session')->isLoggedIn());
         return $key;
     }
 
