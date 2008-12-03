@@ -26,8 +26,16 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 */
 	protected function _redirectToLoginPage()
 	{
-		if ($message = Mage::helper('logincatalog')->getConfig('message')) {
+		/**
+		 * Hack: since 1.1.7 both events are fired, so we need to prevent the message to be added more then once
+		 * 
+		 * @var boolean $sentry
+		 */
+		static $sentry = false;
+		
+		if (! $sentry && ($message = Mage::helper('logincatalog')->getConfig('message'))) {
 			Mage::getSingleton('customer/session')->addNotice($message);
+			$sentry = true;
 		}
 		/**
 		 * Thanks to kimpecov for this line! (http://www.magentocommerce.com/boards/viewthread/16743/)
