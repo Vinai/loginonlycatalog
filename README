@@ -43,6 +43,7 @@ Mage_Catalog_Block_Navigation
  - add the login state to the cache key
 
 Thanks to SeL for the french translation!
+Thanks to kimpecov for the idea from http://www.magentocommerce.com/boards/viewthread/16743/
 
 If you have ideas for improvements or find bugs, please send them to vinai@netzarbeiter.com,
 with Netzarbeiter_LoginCatalog as part of the subject line.

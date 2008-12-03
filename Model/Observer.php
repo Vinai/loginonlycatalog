@@ -29,6 +29,11 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 		if ($message = Mage::helper('logincatalog')->getConfig('message')) {
 			Mage::getSingleton('customer/session')->addNotice($message);
 		}
+		/**
+		 * Thanks to kimpecov for this line! (http://www.magentocommerce.com/boards/viewthread/16743/)
+		 */
+		Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::app()->getRequest()->getRequestUri());
+		
 		Mage::app()->getResponse()->setRedirect(Mage::helper('adminhtml')->getUrl("customer/account/login")); 
 	}
 
