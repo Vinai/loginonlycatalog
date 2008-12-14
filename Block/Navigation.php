@@ -47,7 +47,7 @@ class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navi
     {
 		$key = parent::getCacheKey();
 		$session = Mage::getSingleton('customer/session');
-		if (! $session->isLoggedIn()) $customerGroupId = 0;
+		if (! $session->isLoggedIn()) $customerGroupId = Mage_Customer_Model_Group::NOT_LOGGED_IN_ID;
 		else $customerGroupId = $session->getCustomerGroupId();
 		$key .= $customerGroupId;
         return $key;
