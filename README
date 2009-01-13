@@ -38,10 +38,6 @@ System > Configuration > Catalog > Login only catalog
 There you can disable the module on a global/website/store basis, and also choose to
 hide the category navigation.
 
-Overriden core classes:
-Mage_Catalog_Block_Navigation
- - add the login state to the cache key
-
 Thanks to SeL for the french translation!
 Thanks to kimpecov for the idea from http://www.magentocommerce.com/boards/viewthread/16743/
 
