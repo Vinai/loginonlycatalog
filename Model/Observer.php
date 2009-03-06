@@ -49,12 +49,14 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 * Is fired on catalog_product_load_after event, i.e. when
 	 * a customer views a product page.
 	 * If the customer isn't logged in, redirect to account login page.
+	 * 
+	 * @param Varien_Event_Observer $observer
 	 */
 	public function loginCatalogProductLoadEvent($observer)
 	{
 		if (! Mage::helper('logincatalog')->moduleActive()) return;
 
-		if (! Mage::getSingleton('customer/session')->isLoggedIn()) {
+		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest()) {
 
 			// redirect to login page
 			$this->_redirectToLoginPage();
@@ -66,15 +68,27 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 * when viewing a catalog page with products, or when viewing
 	 * a search page.
 	 * If the customer isn't logged in, redirect to account login page.
+	 * 
+	 * @param Varien_Event_Observer $observer
 	 */
 	public function loginCatalogProductCollectionLoadEvent($observer)
 	{
 		if (! Mage::helper('logincatalog')->moduleActive()) return;
 
-		if (! Mage::getSingleton('customer/session')->isLoggedIn()) {
+		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest()) {
 			// redirect to login page
 			$this->_redirectToLoginPage();
 		}
+	}
+	
+	/**
+	 * Return true if the reqest is made via the api
+	 * 
+	 * @return boolean
+	 */
+	protected function _isApiRequest()
+	{
+		return Mage::app()->getRequest()->getModuleName() === 'api';
 	}
 }
 
