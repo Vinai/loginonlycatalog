@@ -35,6 +35,12 @@
  */
 class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navigation
 {
+	protected function _construct()
+	{
+		$this->setData('module_name', 'Mage_Catalog');
+		parent::_construct();
+	}
+
 	/**
 	 * Set this so the navigation is cached depending on the login state.
 	 * Otherwise, the cache navigation could be shown to a logged in customer, or vica versa.
