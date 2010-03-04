@@ -42,7 +42,7 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 		 */
 		Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::app()->getRequest()->getRequestUri());
 		
-		Mage::app()->getResponse()->setRedirect(Mage::helper('adminhtml')->getUrl("customer/account/login")); 
+		Mage::app()->getResponse()->setRedirect(Mage::getUrl("customer/account/login")); 
 	}
 
 	/**
