@@ -14,16 +14,14 @@
  *
  * DISCLAIMER
  *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
+ * Do not edit or add to this file if you wish to upgrade this extension
+ * to newer versions in the future.
  *
  * @category   Netzarbeiter
  * @package    Netzarbeiter_LoginCatalog
- * @copyright  Copyright (c) 2008 Vinai Kopp http://netzarbeiter.com
+ * @copyright  Copyright (c) 2011 Vinai Kopp http://netzarbeiter.com
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 
 /**
  * Ajust the cache for the catalog navigation to only be cached

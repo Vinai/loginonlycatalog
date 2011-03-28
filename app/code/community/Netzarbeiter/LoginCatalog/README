@@ -1,5 +1,5 @@
 
- **
+/**
  * Magento
  *
  * NOTICE OF LICENSE
@@ -12,10 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
- * package    Netzarbeiter_LoginCatalog
- * copyright  Copyright (c) 2008 Vinai Kopp http://netzarbeiter.com/
- * license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- **
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension
+ * to newer versions in the future.
+ *
+ * @category   Netzarbeiter
+ * @package    Netzarbeiter_LoginCatalog
+ * @copyright  Copyright (c) 2011 Vinai Kopp http://netzarbeiter.com
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
 
 Magento Module: Netzarbeiter/LoginCatalog
 Author: Vinai Kopp <vinai@netzarbeiter.com>
@@ -26,7 +32,7 @@ redirected to the account login page.
 
 This Module was designed to work with the Module Netzarbeiter_CustomerActivation, which
 only allows customers to log in after they have been activated in the adminhtml interface.
-There also is the <a href="http://www.magentocommerce.com/extension/635">Netzarbeiter_GroupsCatalog</a> extension which allows you to hide Categories
+There also is the Netzarbeiter_GroupsCatalog extension which allows you to hide Categories
 and/or groups depending on the customers groups. Installing this extension together with
 the Customer Groups Catalog Extension will probably make no sense, so you have to decide
 what suits your needs better.
