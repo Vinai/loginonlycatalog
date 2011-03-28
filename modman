@@ -1,0 +1,10 @@
+#
+# Netzarbeiter_LoginCatalog modman file
+#
+
+app/etc/modules/Netzarbeiter_LoginCatalog.xml app/etc/modules/Netzarbeiter_LoginCatalog.xml
+app/code/community/Netzarbeiter/LoginCatalog app/code/community/Netzarbeiter/LoginCatalog
+
+app/locale/de_DE/Netzarbeiter_LoginCatalog.csv app/locale/de_DE/Netzarbeiter_LoginCatalog.csv
+app/locale/en_US/Netzarbeiter_LoginCatalog.csv app/locale/en_US/Netzarbeiter_LoginCatalog.csv
+app/locale/fr_FR/Netzarbeiter_LoginCatalog.csv app/locale/fr_FR/Netzarbeiter_LoginCatalog.csv
