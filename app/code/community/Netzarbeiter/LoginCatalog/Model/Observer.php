@@ -25,7 +25,6 @@
 
 class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 {
-
 	/**
 	 * Redirects the customer to the login page
 	 */
@@ -46,8 +45,8 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 		 * Thanks to kimpecov for this line! (http://www.magentocommerce.com/boards/viewthread/16743/)
 		 */
 		Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::app()->getRequest()->getRequestUri());
-		
-		Mage::app()->getResponse()->setRedirect(Mage::getUrl("customer/account/login")); 
+		$url = Mage::getUrl("customer/account/login", array('_nosid' => true));
+		Mage::app()->getResponse()->setRedirect($url);
 	}
 
 	/**
