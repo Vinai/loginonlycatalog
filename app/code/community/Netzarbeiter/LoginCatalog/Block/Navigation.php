@@ -49,31 +49,55 @@ class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navi
 	 */
     public function getCacheKey()
     {
-		$key = parent::getCacheKey();
 		$session = Mage::getSingleton('customer/session');
-		if (! $session->isLoggedIn()) $customerGroupId = Mage_Customer_Model_Group::NOT_LOGGED_IN_ID;
-		else $customerGroupId = $session->getCustomerGroupId();
-		$key .= $customerGroupId;
-        return $key;
+		if (! $session->isLoggedIn())
+		{
+			$customerGroupId = Mage_Customer_Model_Group::NOT_LOGGED_IN_ID;
+		}
+		else
+		{
+			$customerGroupId = $session->getCustomerGroupId();
+		}
+		return parent::getCacheKey() . $customerGroupId;
     }
+
+	protected function _checkHideNavigation() {
+		if (! Mage::getSingleton('customer/session')->isLoggedIn()
+			&& Mage::helper('logincatalog')->moduleActive()
+			&& Mage::helper('logincatalog')->getConfig('hide_categories'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public function drawItem($category, $level=0, $last=false)
 	{
-		if (! Mage::getSingleton('customer/session')->isLoggedIn()
-			&& Mage::helper('logincatalog')->moduleActive()
-			&& Mage::helper('logincatalog')->getConfig('hide_categories')) {
-				return '';
+		if ($this->_checkHideNavigation())
+		{
+			return '';
 		}
 		return parent::drawItem($category, $level, $last);
 	}
 
 	public function drawOpenCategoryItem($category)
 	{
-		if (! Mage::getSingleton('customer/session')->isLoggedIn()
-			&& Mage::helper('logincatalog')->moduleActive()
-			&& Mage::helper('logincatalog')->getConfig('hide_categories')) {
-				return '';
+		if ($this->_checkHideNavigation())
+		{
+			return '';
 		}
 		return parent::drawOpenCategoryItem($category);
+	}
+
+	public function renderCategoriesMenuHtml($level = 0, $outermostItemClass = '', $childrenWrapClass = '')
+	{
+		if ($this->_checkHideNavigation())
+		{
+			return '';
+		}
+		return parent::renderCategoriesMenuHtml($level, $outermostItemClass, $childrenWrapClass);
 	}
 }

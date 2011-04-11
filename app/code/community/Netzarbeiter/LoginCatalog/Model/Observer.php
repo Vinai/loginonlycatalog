@@ -37,7 +37,8 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 		 */
 		static $sentry = false;
 		
-		if (! $sentry && ($message = Mage::helper('logincatalog')->getConfig('message'))) {
+		if (! $sentry && ($message = Mage::helper('logincatalog')->getConfig('message')))
+		{
 			Mage::getSingleton('customer/session')->addNotice($message);
 			$sentry = true;
 		}
@@ -56,12 +57,12 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 * 
 	 * @param Varien_Event_Observer $observer
 	 */
-	public function loginCatalogProductLoadEvent($observer)
+	public function loginCatalogProductLoadEvent(Varien_Event_Observer $observer)
 	{
 		if (! Mage::helper('logincatalog')->moduleActive()) return;
 
-		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest()) {
-
+		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest())
+		{
 			// redirect to login page
 			$this->_redirectToLoginPage();
 		}
@@ -75,11 +76,12 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	 * 
 	 * @param Varien_Event_Observer $observer
 	 */
-	public function loginCatalogProductCollectionLoadEvent($observer)
+	public function loginCatalogProductCollectionLoadEvent(Varien_Event_Observer $observer)
 	{
 		if (! Mage::helper('logincatalog')->moduleActive()) return;
 
-		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest()) {
+		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest())
+		{
 			// redirect to login page
 			$this->_redirectToLoginPage();
 		}
