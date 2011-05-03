@@ -31,6 +31,11 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	protected function _redirectToLoginPage()
 	{
 		/**
+		 * Avoid redirect loops in case products are displayed on the login page
+		 */
+		if ($this->_isLoginPageRequest()) return;
+
+		/**
 		 * Hack: since 1.1.7 both events are fired, so we need to prevent the message to be added more then once
 		 * 
 		 * @var boolean $sentry
@@ -90,11 +95,22 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 	/**
 	 * Return true if the reqest is made via the api
 	 * 
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function _isApiRequest()
 	{
 		return Mage::app()->getRequest()->getModuleName() === 'api';
+	}
+
+	/**
+	 * Return true if the current request is to the login page.
+	 *
+	 * @return bool
+	 */
+	protected function _isLoginPageRequest()
+	{
+		$req = Mage::app()->getRequest();
+		return $req->getModuleName() == 'customer' && $req->getControllerName() == 'account' && $req->getActionName() == 'login';
 	}
 }
 
