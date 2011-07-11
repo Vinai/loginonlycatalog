@@ -23,8 +23,10 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
+class Netzarbeiter_LoginCatalog_Model_Observer
 {
+	protected $_redirectSetFlag = false;
+
 	/**
 	 * Redirects the customer to the login page
 	 */
@@ -35,24 +37,18 @@ class Netzarbeiter_LoginCatalog_Model_Observer extends Mage_Core_Model_Abstract
 		 */
 		if ($this->_isLoginPageRequest()) return;
 
-		/**
-		 * Hack: since 1.1.7 both events are fired, so we need to prevent the message to be added more then once
-		 * 
-		 * @var boolean $sentry
-		 */
-		static $sentry = false;
-		
-		if (! $sentry && ($message = Mage::helper('logincatalog')->getConfig('message')))
+		if ($this->_redirectSetFlag)
 		{
-			Mage::getSingleton('customer/session')->addNotice($message);
-			$sentry = true;
+			return;
 		}
+		
 		/**
 		 * Thanks to kimpecov for this line! (http://www.magentocommerce.com/boards/viewthread/16743/)
 		 */
 		Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::app()->getRequest()->getRequestUri());
 		$url = Mage::getUrl("customer/account/login", array('_nosid' => true));
 		Mage::app()->getResponse()->setRedirect($url);
+		$this->_redirectSetFlag = true;
 	}
 
 	/**
