@@ -106,7 +106,9 @@ class Netzarbeiter_LoginCatalog_Model_Observer
 	protected function _isLoginPageRequest()
 	{
 		$req = Mage::app()->getRequest();
-		return $req->getModuleName() == 'customer' && $req->getControllerName() == 'account' && $req->getActionName() == 'login';
+		return $req->getModuleName() == 'customer'
+				&& $req->getControllerName() == 'account'
+				&& in_array($req->getActionName(), array('login', 'create'));
 	}
 }
 
