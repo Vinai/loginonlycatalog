@@ -41,11 +41,20 @@ class Netzarbeiter_LoginCatalog_Model_Observer
 		{
 			return;
 		}
-		
+
+		// Display message if configured
+		$message = Mage::helper('logincatalog')->getConfig('message');
+		if (mb_strlen($message, 'UTF-8') > 0)
+		{
+			Mage::getSingleton('core/session')->addNotice($message);
+		}
+
 		/**
 		 * Thanks to kimpecov for this line! (http://www.magentocommerce.com/boards/viewthread/16743/)
 		 */
-		Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::app()->getRequest()->getRequestUri());
+		$currentUrl = Mage::getUrl('*/*/*', array('_current' => true, '_nosid' => true));
+		// Use after_auth_url here, otherwise there is a problem with deactivated customers and the Mage_Captcha module
+		Mage::getSingleton('customer/session')->setAfterAuthUrl($currentUrl);
 		$url = Mage::getUrl("customer/account/login", array('_nosid' => true));
 		Mage::app()->getResponse()->setRedirect($url);
 		$this->_redirectSetFlag = true;
@@ -55,14 +64,14 @@ class Netzarbeiter_LoginCatalog_Model_Observer
 	 * Is fired on catalog_product_load_after event, i.e. when
 	 * a customer views a product page.
 	 * If the customer isn't logged in, redirect to account login page.
-	 * 
+	 *
 	 * @param Varien_Event_Observer $observer
 	 */
 	public function loginCatalogProductLoadEvent(Varien_Event_Observer $observer)
 	{
-		if (! Mage::helper('logincatalog')->moduleActive()) return;
+		if (!Mage::helper('logincatalog')->moduleActive()) return;
 
-		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest())
+		if (!Mage::getSingleton('customer/session')->isLoggedIn() && !$this->_isApiRequest())
 		{
 			// redirect to login page
 			$this->_redirectToLoginPage();
@@ -74,23 +83,23 @@ class Netzarbeiter_LoginCatalog_Model_Observer
 	 * when viewing a catalog page with products, or when viewing
 	 * a search page.
 	 * If the customer isn't logged in, redirect to account login page.
-	 * 
+	 *
 	 * @param Varien_Event_Observer $observer
 	 */
 	public function loginCatalogProductCollectionLoadEvent(Varien_Event_Observer $observer)
 	{
-		if (! Mage::helper('logincatalog')->moduleActive()) return;
+		if (!Mage::helper('logincatalog')->moduleActive()) return;
 
-		if (! Mage::getSingleton('customer/session')->isLoggedIn() && ! $this->_isApiRequest())
+		if (!Mage::getSingleton('customer/session')->isLoggedIn() && !$this->_isApiRequest())
 		{
 			// redirect to login page
 			$this->_redirectToLoginPage();
 		}
 	}
-	
+
 	/**
 	 * Return true if the reqest is made via the api
-	 * 
+	 *
 	 * @return bool
 	 */
 	protected function _isApiRequest()
@@ -107,8 +116,8 @@ class Netzarbeiter_LoginCatalog_Model_Observer
 	{
 		$req = Mage::app()->getRequest();
 		return $req->getModuleName() == 'customer'
-				&& $req->getControllerName() == 'account'
-				&& in_array($req->getActionName(), array('login', 'create'));
+			&& $req->getControllerName() == 'account'
+			&& in_array($req->getActionName(), array('login', 'create'));
 	}
 }
 
