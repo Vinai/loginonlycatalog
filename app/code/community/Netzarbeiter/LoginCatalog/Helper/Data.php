@@ -40,7 +40,7 @@ class Netzarbeiter_LoginCatalog_Helper_Data extends Mage_Core_Helper_Abstract
 	 */
 	public function moduleActive()
 	{
-		return ! (bool) $this->getConfig('disable_ext');
+		return !(bool)$this->getConfig('disable_ext');
 	}
 }
 

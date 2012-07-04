@@ -84,7 +84,8 @@ class Netzarbeiter_LoginCatalog_Model_Observer
 		if ($this->_redirectSetFlag ||
 			$this->_isLoginPageRequest() ||
 			$this->_isApiRequest() ||
-			$this->_redirectDisabledForRoute())
+			$this->_redirectDisabledForRoute()
+		)
 		{
 			return;
 		}

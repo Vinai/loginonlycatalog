@@ -42,15 +42,15 @@ class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navi
 	/**
 	 * Set this so the navigation is cached depending on the login state.
 	 * Otherwise, the cache navigation could be shown to a logged in customer, or vica versa.
-	 * 
+	 *
 	 * Use the customer group instead of the login state so this extension compatible
 	 * with the Netzarbeiter_GroupsCatalog extension, in case both extensions are
 	 * installled at the same time.
 	 */
-    public function getCacheKey()
-    {
+	public function getCacheKey()
+	{
 		$session = Mage::getSingleton('customer/session');
-		if (! $session->isLoggedIn())
+		if (!$session->isLoggedIn())
 		{
 			$customerGroupId = Mage_Customer_Model_Group::NOT_LOGGED_IN_ID;
 		}
@@ -59,12 +59,14 @@ class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navi
 			$customerGroupId = $session->getCustomerGroupId();
 		}
 		return parent::getCacheKey() . $customerGroupId;
-    }
+	}
 
-	protected function _checkHideNavigation() {
-		if (! Mage::getSingleton('customer/session')->isLoggedIn()
+	protected function _checkHideNavigation()
+	{
+		if (!Mage::getSingleton('customer/session')->isLoggedIn()
 			&& Mage::helper('logincatalog')->moduleActive()
-			&& Mage::helper('logincatalog')->getConfig('hide_categories'))
+			&& Mage::helper('logincatalog')->getConfig('hide_categories')
+		)
 		{
 			return true;
 		}
@@ -74,7 +76,7 @@ class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navi
 		}
 	}
 
-	public function drawItem($category, $level=0, $last=false)
+	public function drawItem($category, $level = 0, $last = false)
 	{
 		if ($this->_checkHideNavigation())
 		{
