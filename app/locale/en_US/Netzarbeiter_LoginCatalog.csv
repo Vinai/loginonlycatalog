@@ -3,3 +3,5 @@
 "Hide Category Navigation","Hide Category Navigation"
 "Message when a customer is redirected to login page","Message when a customer is redirected to login page"
 "Empty to disable","Empty to disable"
+"Disable on routes","Disable on routes"
+"Add route/controller/action routes (one per line) where no redirect should happen.","Add route/controller/action routes (one per line) where no redirect should happen."

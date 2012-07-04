@@ -3,3 +3,5 @@
 "Hide Category Navigation","Kategorie-Navigation verstecken"
 "Message when a customer is redirected to login page","Nachricht wenn ein Kunde zum Login weitergeleitet wird"
 "Empty to disable","Leeren zum deaktivieren"
+"Disable on routes","Für Routen deaktivieren"
+"Add route/controller/action routes (one per line) where no redirect should happen.","Format: route/controller/action (eine pro Zeile)"
