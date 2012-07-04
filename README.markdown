@@ -20,4 +20,4 @@ This module can also be installed from [Magento Connect][mc].
 
 Please refer to the [README.txt][] of the extension for further information.
 
-[README.txt]: https://github.com/Vinai/loginonlycatalog/blob/master/app/code/community/Netzarbeiter/LoginCatalog/README.txt "README.txt"
+[README.txt]: https://github.com/Vinai/loginonlycatalog/blob/master/app/code/community/Netzarbeiter/LoginCatalog/README "README.txt"
