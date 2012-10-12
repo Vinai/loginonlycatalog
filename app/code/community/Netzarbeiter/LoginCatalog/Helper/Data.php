@@ -25,6 +25,12 @@
 
 class Netzarbeiter_LoginCatalog_Helper_Data extends Mage_Core_Helper_Abstract
 {
+	/**
+	 * If set to false logincatalog is disabled
+	 *
+	 * @var bool|null
+	 */
+	protected $_moduleActive = null;
 
 	/**
 	 * Return the config value for the passed key
