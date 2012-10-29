@@ -1,0 +1,16 @@
+{
+    "name":"netzarbeiter/login-only-catalog",
+    "type":"magento-module",
+    "license":"OSL-3.0",
+    "homepage":"https://github.com/Vinai/loginonlycatalog",
+    "description":"Requires a customer to be logged in order to view products and product collections.",
+    "authors":[
+        {
+            "name":"Vinai Kopp",
+            "email":"vinai@netzarbeiter.com"
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"dev-master"
+    }
+}
