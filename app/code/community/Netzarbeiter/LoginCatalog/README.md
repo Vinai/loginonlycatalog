@@ -1,51 +1,73 @@
+Customer Activation
+============================
+Require a customer to be logged in order to view products and product collections.
 
-/**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension
- * to newer versions in the future.
- *
- * @category   Netzarbeiter
- * @package    Netzarbeiter_LoginCatalog
- * @copyright  Copyright (c) 2012 Vinai Kopp http://netzarbeiter.com
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+Facts
+-----
+- version: check the [config.xml](https://github.com/Vinai/loginonlycatalog/blob/master/app/code/community/Netzarbeiter/LoginCatalog/etc/config.xml)
+- extension key: Netzarbeiter_LoginCatalog
+- [extension on Magento Connect](http://www.magentocommerce.com/magento-connect/login-only-catalog.html)
+- Magento Connect 1.0 extension key: magento-community/Netzarbeiter_LoginCatalog
+- Magento Connect 2.0 extension key: http://connect20.magentocommerce.com/community/Netzarbeiter_LoginCatalog
+- [extension on GitHub](https://github.com/Vinai/loginonlycatalog)
+- [direct download link](https://github.com/Vinai/loginonlycatalog/zipball/master)
 
-Magento Module: Netzarbeiter/LoginCatalog
-Author: Vinai Kopp <vinai@netzarbeiter.com>
-
+Description
+-----------
 This small extension requires a customer to be logged in order to view products or product collections.
-If the customer navigates to a page that contains a product or a product collection, she will be
-redirected to the account login page.
+If the customer navigates to a page that contains a product or a product collection, she will be redirected to the
+account login page.
 
-This Module was designed to work with the Module Netzarbeiter_CustomerActivation, which
+You can disable the module on a global, website or store level, and also choose to hide the category navigation in the
+configuration.
+
+This Module was designed to work with the Module [Netzarbeiter_CustomerActivation][], which
 only allows customers to log in after they have been activated in the adminhtml interface.
-There also is the Netzarbeiter_GroupsCatalog extension which allows you to hide Categories
+There also is the [Netzarbeiter_GroupsCatalog2][] extension which allows you to hide Categories
 and/or groups depending on the customers groups. Installing this extension together with
 the Customer Groups Catalog Extension will probably make no sense, so you have to decide
 what suits your needs better.
 
+This module can also be installed from [Magento Connect][mc].
 
-The configuration for this module can be found in
-System > Configuration > Catalog > Login only catalog
+[mc]: http://www.magentocommerce.com/magento-connect/login-only-catalog.html "The Login Only Catalog Extension on Magento Connect"
+[Netzarbeiter_CustomerActivation]: http://www.magentocommerce.com/magento-connect/customer-activation.html "The CustomerActivation Extension on Magento Connect"
+[Netzarbeiter_GroupsCatalog2]: https://github.com/Vinai/groupscatalog2 "GroupsCatalog 2"
 
-There you can disable the module on a global/website/store basis, and also choose to
-hide the category navigation.
+Compatibility
+-------------
+- Magento >= 1.1
 
+Installation Instructions
+-------------------------
+1. Install the extension via Magento Connect with the key shown above or copy all the files into your document root.
+2. Clear the cache, logout from the admin panel and then login again.
+3. Configure and activate the extension under System - Configuration - Catalog - Login only catalog
+
+Acknowledgements
+----------------
 Thanks to SeL for the french translation!
 Thanks to kimpecov for the idea from http://www.magentocommerce.com/boards/viewthread/16743/
 
-If you have ideas for improvements or find bugs, please send them to vinai@netzarbeiter.com,
-with Netzarbeiter_LoginCatalog as part of the subject line.
+Support
+-------
+If you have any issues with this extension, open an issue on GitHub (see URL above)
+
+Contribution
+------------
+Any contributions are highly appreciated. The best way to contribute code is to open a
+[pull request on GitHub](https://help.github.com/articles/using-pull-requests).
+
+Developer
+---------
+Vinai Kopp
+[http://www.netzarbeiter.com](http://www.netzarbeiter.com)
+[@VinaiKopp](https://twitter.com/VinaiKopp)
+
+Licence
+-------
+[OSL - Open Software Licence 3.0](http://opensource.org/licenses/osl-3.0.php)
+
+Copyright
+---------
+(c) 2012 Vinai Kopp
