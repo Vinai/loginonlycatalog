@@ -1,4 +1,4 @@
-Customer Activation
+Login Only Catalog
 ============================
 Require a customer to be logged in order to view products and product collections.
 
