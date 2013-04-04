@@ -26,9 +26,13 @@
 -->
 <config>
 	<modules>
-		<Netzarbeiter_LoginCatalog>
-			<active>true</active>
-			<codePool>community</codePool>
-		</Netzarbeiter_LoginCatalog>
+        <Netzarbeiter_LoginCatalog>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Customer/>
+                <Mage_Page/>
+            </depends>
+        </Netzarbeiter_LoginCatalog>
 	</modules>
 </config>
