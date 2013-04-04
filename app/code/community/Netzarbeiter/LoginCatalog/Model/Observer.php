@@ -39,6 +39,29 @@ class Netzarbeiter_LoginCatalog_Model_Observer
      */
     protected $_disabledRoutes = null;
 
+    public function controllerFrontInitBefore(Varien_Event_Observer $observer)
+    {
+        if (version_compare(Mage::getVersion(), '1.7', '<')) {
+            Mage::getConfig()->setNode(
+                'global/blocks/catalog/rewrite/navigation',
+                'Netzarbeiter_LoginCatalog_Block_Navigation'
+            );
+        }
+    }
+
+    public function pageBlockHtmlTopmenuGethtmlBefore(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('logincatalog')->shouldHideCategoryNavigation()) {
+            /** @var $menu Varien_Data_Tree_Node */
+            $menu = $observer->getMenu();
+            foreach ($menu->getChildren() as $key => $node) {
+                if (strpos($key, 'category-') === 0) {
+                    $menu->removeChild($node);
+                }
+            }
+        }
+    }
+
     /**
      * Is fired on catalog_product_load_after event, i.e. when
      * a customer views a product page.

@@ -26,89 +26,112 @@
 -->
 <config>
 
-	<modules>
-		<Netzarbeiter_LoginCatalog>
-			<version>1.1.9</version>
-		</Netzarbeiter_LoginCatalog>
-	</modules>
+    <modules>
+        <Netzarbeiter_LoginCatalog>
+            <version>1.2.0</version>
+        </Netzarbeiter_LoginCatalog>
+    </modules>
 
-	<global>
-		<models>
-			<logincatalog>
-				<class>Netzarbeiter_LoginCatalog_Model</class>
-			</logincatalog>
-		</models>
-		<blocks>
-			<catalog>
-				<rewrite>
-					<navigation>Netzarbeiter_LoginCatalog_Block_Navigation</navigation>
-				</rewrite>
-			</catalog>
-		</blocks>
-		<helpers>
-			<logincatalog>
-				<class>Netzarbeiter_LoginCatalog_Helper</class>
-			</logincatalog>
-		</helpers>
+    <global>
+        <models>
+            <logincatalog>
+                <class>Netzarbeiter_LoginCatalog_Model</class>
+            </logincatalog>
+        </models>
+        <!-- rewrite moved to observer since it now is only required for Magento versions < 1.7
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <navigation>Netzarbeiter_LoginCatalog_Block_Navigation</navigation>
+                </rewrite>
+            </catalog>
+        </blocks>
+        -->
+        <helpers>
+            <logincatalog>
+                <class>Netzarbeiter_LoginCatalog_Helper</class>
+            </logincatalog>
+        </helpers>
 
-		<resources>
-			<logincatalog_setup>
-				<use>default_setup</use>
-			</logincatalog_setup>
-			<logincatalog_write>
-				<use>default_write</use>
-			</logincatalog_write>
-			<logincatalog_read>
-				<use>default_read</use>
-			</logincatalog_read>
-		</resources>
-	</global>
+        <resources>
+            <logincatalog_setup>
+                <use>default_setup</use>
+            </logincatalog_setup>
+            <logincatalog_write>
+                <use>default_write</use>
+            </logincatalog_write>
+            <logincatalog_read>
+                <use>default_read</use>
+            </logincatalog_read>
+        </resources>
+    </global>
 
-	<frontend>
-		<events>
-			<catalog_product_collection_load_after>
-				<observers>
-					<loginCatalogProductCollectionLoad>
-						<type>singleton</type>
-						<class>logincatalog/observer</class>
-						<method>catalogProductCollectionLoadAfter</method>
-					</loginCatalogProductCollectionLoad>
-				</observers>
-			</catalog_product_collection_load_after>
+    <frontend>
+        <events>
+            <controller_front_init_before>
+                <observers>
+                    <netzarbeiter_logincatalog>
+                        <type>singleton</type>
+                        <class>logincatalog/observer</class>
+                        <method>controllerFrontInitBefore</method>
+                    </netzarbeiter_logincatalog>
+                </observers>
+            </controller_front_init_before>
 
-			<catalog_product_load_after>
-				<observers>
-					<loginCatalogProductLoad>
-						<type>singleton</type>
-						<class>logincatalog/observer</class>
-						<method>catalogProductLoadAfter</method>
-					</loginCatalogProductLoad>
-				</observers>
-			</catalog_product_load_after>
-		</events>
-	</frontend>
+            <page_block_html_topmenu_gethtml_before>
+                <!-- event available since 1.7 -->
+                <observers>
+                    <netzarbeiter_logincatalog>
+                        <type>singleton</type>
+                        <class>logincatalog/observer</class>
+                        <method>pageBlockHtmlTopmenuGethtmlBefore</method>
+                    </netzarbeiter_logincatalog>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
 
-	<default>
-		<catalog>
-			<logincatalog>
-				<disable_ext>0</disable_ext>
-				<hide_categories>0</hide_categories>
-				<message>Please log in to view our catalog</message>
-				<disable_on_routes></disable_on_routes>
-			</logincatalog>
-		</catalog>
-	</default>
+            <catalog_product_collection_load_after>
+                <observers>
+                    <netzarbeiter_logincatalog>
+                        <type>singleton</type>
+                        <class>logincatalog/observer</class>
+                        <method>catalogProductCollectionLoadAfter</method>
+                    </netzarbeiter_logincatalog>
+                </observers>
+            </catalog_product_collection_load_after>
 
-	<adminhtml>
+            <catalog_product_load_after>
+                <observers>
+                    <netzarbeiter_logincatalog>
+                        <type>singleton</type>
+                        <class>logincatalog/observer</class>
+                        <method>catalogProductLoadAfter</method>
+                    </netzarbeiter_logincatalog>
+                </observers>
+            </catalog_product_load_after>
+        </events>
+    </frontend>
+
+    <default>
+        <catalog>
+            <logincatalog>
+                <disable_ext>0</disable_ext>
+                <hide_categories>0</hide_categories>
+                <message>Please log in to view our catalog</message>
+                <disable_on_routes></disable_on_routes>
+            </logincatalog>
+        </catalog>
+    </default>
+
+    <adminhtml>
         <translate>
             <modules>
                 <Netzarbeiter_LoginCatalog>
-                     <files>
-                          <default>Netzarbeiter_LoginCatalog.csv</default>
-                     </files>
+                    <files>
+                        <default>Netzarbeiter_LoginCatalog.csv</default>
+                    </files>
                 </Netzarbeiter_LoginCatalog>
             </modules>
         </translate>
-	</adminhtml>
+    </adminhtml>
 
 </config>
