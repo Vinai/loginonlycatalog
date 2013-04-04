@@ -70,4 +70,4 @@ Licence
 
 Copyright
 ---------
-(c) 2012 Vinai Kopp
+Copyright (c) 2013 Vinai Kopp
