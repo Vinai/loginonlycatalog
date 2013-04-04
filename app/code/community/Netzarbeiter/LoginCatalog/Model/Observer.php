@@ -94,8 +94,10 @@ class Netzarbeiter_LoginCatalog_Model_Observer
             Mage::getSingleton('core/session')->addNotice($message);
         }
 
-        // Thanks to kimpecov for this line! (http://www.magentocommerce.com/boards/viewthread/16743/)
-        // Use after_auth_url here, otherwise there is a problem with deactivated customers and the Mage_Captcha module
+        // Thanks to kimpecov for this line!
+        // (http://www.magentocommerce.com/boards/viewthread/16743/)
+        // Use after_auth_url here, otherwise there is a problem with
+        // deactivated customers and the Mage_Captcha module
         $currentUrl = Mage::helper('core/url')->getCurrentUrl();
         //$currentUrl = Mage::getUrl('*/*/*', array('_current' => true, '_nosid' => true));
         $currentUrl = Mage::getSingleton('core/url')->sessionUrlVar($currentUrl);
