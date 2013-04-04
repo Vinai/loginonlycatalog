@@ -60,14 +60,7 @@ class Netzarbeiter_LoginCatalog_Block_Navigation extends Mage_Catalog_Block_Navi
 
     protected function _checkHideNavigation()
     {
-        if (!Mage::getSingleton('customer/session')->isLoggedIn()
-                && Mage::helper('logincatalog')->moduleActive()
-                && Mage::helper('logincatalog')->getConfig('hide_categories')
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return Mage::helper('logincatalog')->shouldHideCategoryNavigation();
     }
 
     public function drawItem($category, $level = 0, $last = false)

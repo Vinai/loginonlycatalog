@@ -67,7 +67,6 @@ class Netzarbeiter_LoginCatalog_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Reset the module to use the system configuration activation state
      *
-     * @param null $store
      * @return Netzarbeiter_LoginCatalog_Helper_Data
      */
     public function resetActivationState()
@@ -84,6 +83,23 @@ class Netzarbeiter_LoginCatalog_Helper_Data extends Mage_Core_Helper_Abstract
     public function getModuleActiveFlag()
     {
         return $this->_moduleActive;
+    }
+
+    /**
+     * Check if the category navigation should be hidden
+     *
+     * @return bool
+     */
+    public function shouldHideCategoryNavigation()
+    {
+        if (!Mage::getSingleton('customer/session')->isLoggedIn()
+                && $this->moduleActive()
+                && $this->getConfig('hide_categories')
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
