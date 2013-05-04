@@ -46,6 +46,11 @@ class Netzarbeiter_LoginCatalog_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function moduleActive()
     {
+        // Only set module active if this is a http request
+        if ('' == Mage::app()->getRequest()->getRequestUri()) {
+            return false;
+        }
+
         if (null !== $this->getModuleActiveFlag()) {
             return $this->getModuleActiveFlag();
         }
