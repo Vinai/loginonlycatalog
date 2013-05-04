@@ -29,18 +29,6 @@
  */
 class Netzarbeiter_LoginCatalog_Test_Model_Observer extends EcomDev_PHPUnit_Test_Case_Controller
 {
-    //    protected function setUp()
-    //    {
-    //        return parent::setUp();
-    //    }
-    //
-    protected function tearDown()
-    {
-        Mage::unregister('_helper/logincatalog');
-        Mage::unregister('_helper/logincatalog/data');
-        return parent::tearDown();
-    }
-
     /**
      * @test
      * @singleton    logincatalog/observer
@@ -79,6 +67,8 @@ class Netzarbeiter_LoginCatalog_Test_Model_Observer extends EcomDev_PHPUnit_Test
     }
 
     /**
+     * Return the value of the first found location header
+     *
      * @param Mage_Core_Controller_Response_Http $response
      * @return string
      */
@@ -105,7 +95,7 @@ class Netzarbeiter_LoginCatalog_Test_Model_Observer extends EcomDev_PHPUnit_Test
      */
     public function noRedirectOnHome()
     {
-        $this->dispatch('cms/index/index');
+        $this->dispatch('cms/index/index', array('_store' => 'usa'));
 
         $this->assertEventNotDispatched('catalog_product_load_after');
         $this->assertNotRedirect();
