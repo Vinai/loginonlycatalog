@@ -90,7 +90,9 @@ class Netzarbeiter_LoginCatalog_Model_Observer
      */
     protected function _checkLoginStatus()
     {
-        if (!Mage::helper('logincatalog')->moduleActive()) return;
+        if (!Mage::helper('logincatalog')->moduleActive()) {
+            return;
+        }
 
         if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
             // Redirect to login page
@@ -126,10 +128,37 @@ class Netzarbeiter_LoginCatalog_Model_Observer
         $currentUrl = Mage::getSingleton('core/url')->sessionUrlVar($currentUrl);
         Mage::getSingleton('customer/session')->setAfterAuthUrl($currentUrl);
 
-        $url = Mage::getUrl("customer/account/login", array('_nosid' => true));
+        $url = $this->_getRedirectTargetUrl();
         Mage::app()->getResponse()->setRedirect($url);
 
         $this->_redirectSetFlag = true;
+    }
+
+    /**
+     * Return the configured redirect target URL
+     *
+     * @return string
+     */
+    protected function _getRedirectTargetUrl()
+    {
+        $helper = Mage::helper('logincatalog');
+        $route = 'customer/account/login';
+        $params = array('_nosid' => true);
+        if ($helper->getConfig('redirect_to_page')) {
+            $page = Mage::getModel('cms/page');
+            $page->setStoreId(Mage::app()->getStore()->getId())
+                ->load($helper->getConfig('cms_page'), 'identifier');
+            if ($page->getId()) {
+                $route = null;
+                $params['_direct'] = $page->getIdentifier();
+            } else {
+                Mage::log(
+                    $helper->__('Invalid CMS page configured as a redirect landing page.'),
+                    Zend_Log::ERR
+                );
+            }
+        }
+        return Mage::getUrl($route, $params);
     }
 
     /**
@@ -150,10 +179,12 @@ class Netzarbeiter_LoginCatalog_Model_Observer
      */
     protected function _redirectDisabledForRoute()
     {
-        if (!isset($this->_disabledRoutes)) {
-            $routes = Mage::helper('logincatalog')->getConfig('disable_on_routes');
-            foreach (explode("\n", $routes) as $route) {
-                $this->_disabledRoutes[] = explode('/', trim($route));
+        if (! isset($this->_disabledRoutes)) {
+            $this->_disabledRoutes = array();
+            if ($routes = Mage::helper('logincatalog')->getConfig('disable_on_routes')) {
+                foreach (explode("\n", $routes) as $route) {
+                    $this->_disabledRoutes[] = explode('/', trim($route));
+                }
             }
         }
         foreach ($this->_disabledRoutes as $route) {
@@ -198,14 +229,24 @@ class Netzarbeiter_LoginCatalog_Model_Observer
                             if ($req->getActionName() === $route[2]) {
                                 return true; // all parts match
 
-                            } else return false; // all except action match
-                        } else return true; // only module route and controller specified and both match
-
-                    } else return false; // module route matches but controller doesn't match
-                } else return true; // only module route specified and matches
-
-            } else return false; // module route specified but doesn't match
-        } else return false; // no module route specified
+                            } else {
+                                return false; // all except action match
+                            }
+                        } else {
+                            return true; // only module route and controller specified and both match
+                        }
+                    } else {
+                        return false; // module route matches but controller doesn't match
+                    }
+                } else {
+                    return true; // only module route specified and matches
+                }
+            } else {
+                return false; // module route specified but doesn't match
+            }
+        } else {
+            return false; // no module route specified
+        }
     }
 }
 

@@ -118,6 +118,8 @@
                 <hide_categories>0</hide_categories>
                 <message>Please log in to view our catalog</message>
                 <disable_on_routes></disable_on_routes>
+                <redirect_to_page>0</redirect_to_page>
+                <cms_page></cms_page>
             </logincatalog>
         </catalog>
     </default>
@@ -133,5 +135,13 @@
             </modules>
         </translate>
     </adminhtml>
+
+    <phpunit>
+        <suite>
+            <modules>
+                <Netzarbeiter_LoginCatalog/>
+            </modules>
+        </suite>
+    </phpunit>
 
 </config>
