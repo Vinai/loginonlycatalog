@@ -39,6 +39,14 @@ class Netzarbeiter_LoginCatalog_Model_Observer
      */
     protected $_disabledRoutes = null;
 
+    /**
+     * Conditional rewrite to enable feature backward compatibility.
+     *
+     * Since Magento 1.7 it is no longer required to rewrite the catalog
+     * navigation block to hide the category navigation.
+     *
+     * @param Varien_Event_Observer $observer
+     */
     public function controllerFrontInitBefore(Varien_Event_Observer $observer)
     {
         if (version_compare(Mage::getVersion(), '1.7', '<')) {
@@ -49,6 +57,11 @@ class Netzarbeiter_LoginCatalog_Model_Observer
         }
     }
 
+    /**
+     * Hide the catalog navigation to logged out visitors if the feature is configured.
+     *
+     * @param Varien_Event_Observer $observer
+     */
     public function pageBlockHtmlTopmenuGethtmlBefore(Varien_Event_Observer $observer)
     {
         if (Mage::helper('logincatalog')->shouldHideCategoryNavigation()) {
