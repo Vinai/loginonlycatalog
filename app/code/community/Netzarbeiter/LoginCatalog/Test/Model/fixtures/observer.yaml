@@ -1,0 +1,162 @@
+#
+# Netzarbeiter
+#
+# NOTICE OF LICENSE
+#
+# This source file is subject to the Open Software License (OSL 3.0)
+# that is bundled with this package in the file LICENSE.txt.
+# It is also available through the world-wide-web at this URL:
+# http://opensource.org/licenses/osl-3.0.php
+#
+# DISCLAIMER
+#
+# Do not edit or add to this file if you wish to upgrade this Module to
+# newer versions in the future.
+#
+# @category   Netzarbeiter
+# @package    Netzarbeiter_LoginCatalog
+# @copyright  Copyright (c) 2013 Vinai Kopp http://netzarbeiter.com
+# @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+#
+
+scope:
+  website: # Initialize websites
+    - website_id: 2
+      code: usa_website
+      name: USA Website
+      default_group_id: 2
+    - website_id: 3
+      code: canada_website
+      name: Canada Website
+      default_group_id: 3
+    - website_id: 4
+      code: german_website
+      name: German Website
+      default_group_id: 4
+  group: # Initializes store groups
+    - group_id: 2
+      website_id: 2
+      name: USA Store Group
+      default_store_id: 2
+      root_category_id: 2 # Default Category
+    - group_id: 3
+      website_id: 3
+      name: Canada Store Group
+      default_store_id: 3
+      root_category_id: 2 # Default Category
+    - group_id: 4
+      website_id: 4
+      name: German Store Group
+      default_store_id: 4
+      root_category_id: 2 # Default Category
+  store: # Initializes store views
+    - store_id: 2
+      website_id: 2
+      group_id: 2
+      code: usa
+      name: USA Store
+      is_active: 1
+    - store_id: 6
+      website_id: 2
+      group_id: 2
+      code: usa2
+      name: USA Store 2
+      is_active: 1
+    - store_id: 3
+      website_id: 3
+      group_id: 3
+      code: canada
+      name: Canada Store
+      is_active: 1
+    - store_id: 4
+      website_id: 4
+      group_id: 4
+      code: germany
+      name: Germany Store
+      is_active: 1
+    - store_id: 5
+      website_id: 4
+      group_id: 4
+      code: germany2
+      name: Germany Store 2
+      is_active: 1
+
+config:
+  default/catalog/logincatalog/disable_ext: 0
+  default/catalog/logincatalog/hide_categories: 0
+  default/catalog/logincatalog/message: Please log in to view our catalog
+  default/catalog/logincatalog/disable_on_routes:  # empty string
+  default/catalog/logincatalog/redirect_to_page: 0
+  default/catalog/logincatalog/cms_page:  # empty string
+
+  default/web/default/cms_home_page: logincatalog-test-homepage
+  default/web/default/front: cms
+
+  stores/usa2/catalog/logincatalog/redirect_to_page: 1
+  stores/usa2/catalog/logincatalog/cms_page: logincatalog-test-landingpage
+  stores/canada/catalog/logincatalog/disable_on_routes: catalog/product/view # disable on product detail route
+  stores/germany/catalog/logincatalog/disable_ext: 1 # disable extension on store view scope
+
+eav:
+  catalog_product:
+    - entity_id: 1
+      type_id: simple
+      sku: product1
+      name: Product One
+      short_description: A test product
+      description: A great test product
+      url_key: product_one
+      stock:
+        qty: 1000.00
+        is_in_stock: 1
+      website_ids:
+        - usa_website
+        - canada_website
+        - german_website
+      category_ids:
+        - 2 # Default Category
+      price: 12.99
+      tax_class_id: 2 # Taxable Goods
+      status: 1 # Enabled
+      visibility: 4 # Visible in Catalog & Search
+
+# two cms pages, associated with all store views
+tables:
+  cms/page:
+    - page_id: 20
+      title: LoginOnlyCatalog Test Homepage
+      root_template: one_column
+      identifier: logincatalog-test-homepage
+      content: '<div><h2>Test Homepage</h2></div>'
+      creation_time: '2007-08-30 14:01:18'
+      update_time: '2007-08-30 14:01:19'
+      is_active: 1
+    - page_id: 21
+      title: LoginOnlyCatalog Test Landing Page
+      root_template: one_column
+      identifier: logincatalog-test-landingpage
+      content: '<div><h2>Test Landing Page</h2></div>'
+      creation_time: '2007-08-30 14:01:19'
+      update_time: '2007-08-30 14:01:20'
+      is_active: 1
+  cms/page_store:
+    - page_id: 20
+      store_id: 2
+    - page_id: 20
+      store_id: 6
+    - page_id: 20
+      store_id: 3
+    - page_id: 20
+      store_id: 4
+    - page_id: 20
+      store_id: 5
+    - page_id: 21
+      store_id: 2
+    - page_id: 21
+      store_id: 6
+    - page_id: 21
+      store_id: 3
+    - page_id: 21
+      store_id: 4
+    - page_id: 21
+      store_id: 5

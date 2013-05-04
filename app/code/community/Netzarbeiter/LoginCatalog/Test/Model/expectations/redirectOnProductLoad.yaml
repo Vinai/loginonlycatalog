@@ -1,0 +1,37 @@
+#
+# Netzarbeiter
+#
+# NOTICE OF LICENSE
+#
+# This source file is subject to the Open Software License (OSL 3.0)
+# that is bundled with this package in the file LICENSE.txt.
+# It is also available through the world-wide-web at this URL:
+# http://opensource.org/licenses/osl-3.0.php
+#
+# DISCLAIMER
+#
+# Do not edit or add to this file if you wish to upgrade this Module to
+# newer versions in the future.
+#
+# @category   Netzarbeiter
+# @package    Netzarbeiter_LoginCatalog
+# @copyright  Copyright (c) 2013 Vinai Kopp http://netzarbeiter.com
+# @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+#
+
+usa:
+  redirect: true
+  route: customer/account/login
+  params: []
+
+usa2:
+  redirect: true
+  route: ""
+  params:
+    _direct: logincatalog-test-landingpage
+
+canada:
+  redirect: false # disabled for route
+
+germany:
+  redirect: false # module disabled on store view scope
