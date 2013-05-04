@@ -17,6 +17,7 @@ Description
 This small extension requires a customer to be logged in order to view products or product collections.
 If the customer navigates to a page that contains a product or a product collection, she will be redirected to the
 account login page.
+Alternatively the customer can be redirected to a configurable CMS page.
 
 You can disable the module on a global, website or store level, and also choose to hide the category navigation in the
 configuration.
