@@ -8,3 +8,11 @@ app/code/community/Netzarbeiter/LoginCatalog app/code/community/Netzarbeiter/Log
 app/locale/de_DE/Netzarbeiter_LoginCatalog.csv app/locale/de_DE/Netzarbeiter_LoginCatalog.csv
 app/locale/en_US/Netzarbeiter_LoginCatalog.csv app/locale/en_US/Netzarbeiter_LoginCatalog.csv
 app/locale/fr_FR/Netzarbeiter_LoginCatalog.csv app/locale/fr_FR/Netzarbeiter_LoginCatalog.csv
+
+#
+# BehatMage Features
+#
+
+features/netzarbeiter_logincatalog_hide_catagories.feature features/netzarbeiter_logincatalog_hide_catagories.feature
+features/bootstrap/Netzarbeiter/LoginCatalogContext.php features/bootstrap/Netzarbeiter/LoginCatalogContext.php
+features/bootstrap/Netzarbeiter/LoginCatalog/CategoryNavigationContext.php features/bootstrap/Netzarbeiter/LoginCatalog/CategoryNavigationContext.php
