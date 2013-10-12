@@ -27,7 +27,7 @@
  * @loadSharedFixture observer.yaml
  * @doNotIndexAll
  */
-class Netzarbeiter_LoginCatalog_Test_Model_Observer extends EcomDev_PHPUnit_Test_Case_Controller
+class Netzarbeiter_LoginCatalog_Test_Model_ObserverTest extends EcomDev_PHPUnit_Test_Case_Controller
 {
     /**
      * @test
