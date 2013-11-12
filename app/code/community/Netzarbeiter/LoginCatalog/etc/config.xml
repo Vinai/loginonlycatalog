@@ -108,6 +108,16 @@
                     </netzarbeiter_logincatalog>
                 </observers>
             </catalog_product_load_after>
+
+            <catalog_category_load_after>
+                <observers>
+                    <netzarbeiter_logincatalog>
+                        <type>singleton</type>
+                        <class>logincatalog/observer</class>
+                        <method>catalogCategoryLoadAfter</method>
+                    </netzarbeiter_logincatalog>
+                </observers>
+            </catalog_category_load_after>
         </events>
     </frontend>
 
@@ -116,6 +126,7 @@
             <logincatalog>
                 <disable_ext>0</disable_ext>
                 <hide_categories>0</hide_categories>
+                <redirect_for_categories>0</redirect_for_categories>
                 <message>Please log in to view our catalog</message>
                 <disable_on_routes></disable_on_routes>
                 <redirect_to_page>0</redirect_to_page>

@@ -99,6 +99,18 @@ class Netzarbeiter_LoginCatalog_Model_Observer
     }
 
     /**
+     * @param Varien_Event_Observer $observer
+     */
+    public function catalogCategoryLoadAfter(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('logincatalog')->getConfig('redirect_for_categories')) {
+            if ($this->_requestedRouteMatches(array('catalog', 'category', 'view'))) {
+                $this->_checkLoginStatus();
+            }
+        }
+    }
+
+    /**
      * If the customer isn't logged in, redirect to account login page.
      */
     protected function _checkLoginStatus()

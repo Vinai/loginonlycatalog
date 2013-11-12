@@ -5,3 +5,4 @@
 "Empty to disable","Empty to disable"
 "Disable on routes","Disable on routes"
 "Add route/controller/action routes (one per line) where no redirect should happen.","Add route/controller/action routes (one per line) where no redirect should happen."
+"Do redirect on Category Pages","Do redirect on Category Pages"
