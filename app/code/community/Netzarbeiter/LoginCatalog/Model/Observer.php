@@ -50,10 +50,12 @@ class Netzarbeiter_LoginCatalog_Model_Observer
     public function controllerFrontInitBefore(Varien_Event_Observer $observer)
     {
         if (version_compare(Mage::getVersion(), '1.7', '<')) {
-            Mage::getConfig()->setNode(
-                'global/blocks/catalog/rewrite/navigation',
-                'Netzarbeiter_LoginCatalog_Block_Navigation'
-            );
+            if (Mage::helper('logincatalog')->shouldHideCategoryNavigation()) {
+                Mage::getConfig()->setNode(
+                    'global/blocks/catalog/rewrite/navigation',
+                    'Netzarbeiter_LoginCatalog_Block_Navigation'
+                );
+            }
         }
     }
 
