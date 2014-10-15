@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Magento
  *
@@ -21,8 +22,8 @@
  * @package    Netzarbeiter_LoginCatalog
  * @copyright  Copyright (c) 2014 Vinai Kopp http://netzarbeiter.com
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-
-/**
+ *
+ * /**
  * @see Netzarbeiter_LoginCatalog_Model_Observer
  * @loadSharedFixture observer.yaml
  * @doNotIndexAll

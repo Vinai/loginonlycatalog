@@ -38,15 +38,6 @@
                 <class>Netzarbeiter_LoginCatalog_Model</class>
             </logincatalog>
         </models>
-        <!-- rewrite moved to observer since it now is only required for Magento versions < 1.7
-        <blocks>
-            <catalog>
-                <rewrite>
-                    <navigation>Netzarbeiter_LoginCatalog_Block_Navigation</navigation>
-                </rewrite>
-            </catalog>
-        </blocks>
-        -->
         <helpers>
             <logincatalog>
                 <class>Netzarbeiter_LoginCatalog_Helper</class>
@@ -77,6 +68,16 @@
                     </netzarbeiter_logincatalog>
                 </observers>
             </controller_front_init_before>
+
+            <controller_action_predispatch>
+                <observers>
+                    <netzarbeiter_logincatalog>
+                        <type>singleton</type>
+                        <class>logincatalog/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </netzarbeiter_logincatalog>
+                </observers>
+            </controller_action_predispatch>
 
             <page_block_html_topmenu_gethtml_before>
                 <!-- event available since 1.7 -->
