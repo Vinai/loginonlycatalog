@@ -30,8 +30,10 @@
             <active>true</active>
             <codePool>community</codePool>
             <depends>
+                <Mage_Core/>
                 <Mage_Customer/>
                 <Mage_Page/>
+                <Mage_Adminhtml/>
             </depends>
         </Netzarbeiter_LoginCatalog>
 	</modules>
