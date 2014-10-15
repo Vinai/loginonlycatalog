@@ -26,7 +26,7 @@
 class Netzarbeiter_LoginCatalog_Model_System_Config_Source_RedirectType
 {
     /**
-     * Return the dropdown options for system config select
+     * Return the drop down options for system config select
      *
      * @return array
      */
