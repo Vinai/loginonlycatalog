@@ -6,3 +6,4 @@
 "Disable on routes","Für Routen deaktivieren"
 "Add route/controller/action routes (one per line) where no redirect should happen.","Format: route/controller/action (eine pro Zeile)"
 "Do redirect on Category Pages","Weiterleitung in Kategorien aktivieren"
+"Redirect to login from any page,"Weiterleitung von jeder Seite aktivieren"
