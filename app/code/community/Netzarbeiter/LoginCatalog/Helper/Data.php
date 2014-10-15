@@ -34,15 +34,21 @@ class Netzarbeiter_LoginCatalog_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Return the config value for the passed key
+     * 
+     * @param string $key
+     * @param null|Mage_Core_Model_Store|int $store
+     * @return mixed
      */
-    public function getConfig($key)
+    public function getConfig($key, $store = null)
     {
         $path = 'catalog/logincatalog/' . $key;
-        return Mage::getStoreConfig($path, Mage::app()->getStore());
+        return Mage::getStoreConfig($path, $store);
     }
 
     /**
      * Check if the extension has been disabled in the system configuration
+     * 
+     * @return bool
      */
     public function moduleActive()
     {
