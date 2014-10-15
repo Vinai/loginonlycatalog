@@ -71,4 +71,4 @@ Licence
 
 Copyright
 ---------
-Copyright (c) 2013 Vinai Kopp
+Copyright (c) 2014 Vinai Kopp
