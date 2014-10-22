@@ -29,10 +29,7 @@ and/or groups depending on the customers groups. Installing this extension toget
 the Customer Groups Catalog Extension will probably make no sense, so you have to decide
 what suits your needs better.
 
-This module can also be installed from [Magento Connect][mc].
-
-[mc]: http://www.magentocommerce.com/magento-connect/login-only-catalog.html "The Login Only Catalog Extension on Magento Connect"
-[Netzarbeiter_CustomerActivation]: http://www.magentocommerce.com/magento-connect/customer-activation.html "The CustomerActivation Extension on Magento Connect"
+[Netzarbeiter_CustomerActivation]: https://github.com/Vinai/customer-activation "The CustomerActivation Extension on github"
 [Netzarbeiter_GroupsCatalog2]: https://github.com/Vinai/groupscatalog2 "GroupsCatalog 2"
 
 Compatibility
