@@ -6,9 +6,9 @@ Facts
 -----
 - version: check the [config.xml](https://github.com/Vinai/loginonlycatalog/blob/master/app/code/community/Netzarbeiter/LoginCatalog/etc/config.xml)
 - extension key: Netzarbeiter_LoginCatalog
-- [extension on Magento Connect](http://www.magentocommerce.com/magento-connect/login-only-catalog.html)
-- Magento Connect 1.0 extension key: magento-community/Netzarbeiter_LoginCatalog
-- Magento Connect 2.0 extension key: http://connect20.magentocommerce.com/community/Netzarbeiter_LoginCatalog
+- extension on Magento Connect: -
+- Magento Connect 1.0 extension key: -
+- Magento Connect 2.0 extension key: -
 - [extension on GitHub](https://github.com/Vinai/loginonlycatalog)
 - [direct download link](https://github.com/Vinai/loginonlycatalog/zipball/master)
 
