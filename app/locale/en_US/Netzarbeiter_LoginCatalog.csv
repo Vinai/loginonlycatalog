@@ -7,3 +7,7 @@
 "Add route/controller/action routes (one per line) where no redirect should happen.","Add route/controller/action routes (one per line) where no redirect should happen."
 "Do redirect on Category Pages","Do redirect on Category Pages"
 "Redirect to login from any page","Redirect to login from any page"
+"Redirect to","Redirect to"
+"Login Page","Login Page"
+"Target CMS Page","Target CMS Page"
+"The module will be deactivated on the target page.","The module will be deactivated on the target page."
