@@ -122,6 +122,14 @@ class Netzarbeiter_LoginCatalog_Model_Observer
     }
 
     /**
+     * Extension point to trigger redirects from other events
+     */
+    protected function handlePossibleRedirect()
+    {
+        $this->_handlePossibleRedirect();
+    }
+
+    /**
      * If the customer isn't logged in, redirect to account login page.
      */
     private function _handlePossibleRedirect()
