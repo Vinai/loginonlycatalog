@@ -344,8 +344,8 @@ class Netzarbeiter_LoginCatalog_Model_Observer
      */
     private function _shouldRewriteOldNavigationBlock()
     {
-        return version_compare(Mage::getVersion(), '1.7',
-            '<') && Mage::helper('logincatalog')->shouldHideCategoryNavigation();
+        $isOld = version_compare(Mage::getVersion(), '1.7', '<');
+        return $isOld && Mage::helper('logincatalog')->shouldHideCategoryNavigation();
     }
 
     /**
