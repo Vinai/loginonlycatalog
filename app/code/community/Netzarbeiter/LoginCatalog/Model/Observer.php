@@ -147,7 +147,7 @@ class Netzarbeiter_LoginCatalog_Model_Observer
         }
 
         // Display message if configured
-        $this->_addSpashMessageToSession();
+        $this->_addSplashMessageToSession();
         $this->_setAfterAuthUrl();
 
         $url = $this->_getRedirectTargetUrl();
@@ -211,7 +211,9 @@ class Netzarbeiter_LoginCatalog_Model_Observer
             $this->_requestedRouteMatches(array('customer', 'account', 'login')) ||
             $this->_requestedRouteMatches(array('customer', 'account', 'loginPost')) ||
             $this->_requestedRouteMatches(array('customer', 'account', 'create')) ||
-            $this->_requestedRouteMatches(array('customer', 'account', 'createPost'));
+            $this->_requestedRouteMatches(array('customer', 'account', 'createPost')) ||
+            $this->_requestedRouteMatches(array('customer', 'account', 'forgotpassword')) ||
+            $this->_requestedRouteMatches(array('customer', 'account', 'forgotpasswordPost'));
     }
 
     /**
@@ -241,12 +243,30 @@ class Netzarbeiter_LoginCatalog_Model_Observer
         Mage::getSingleton('customer/session')->setAfterAuthUrl($currentUrl);
     }
 
-    private function _addSpashMessageToSession()
+    private function _addSplashMessageToSession()
     {
         $message = Mage::helper('logincatalog')->getConfig('message');
-        if (mb_strlen($message, 'UTF-8') > 0) {
+        if (mb_strlen($message, 'UTF-8') > 0 && !$this->_isMessageSetOnSession($message)) {
             Mage::getSingleton('customer/session')->addNotice($message);
         }
+    }
+
+    private function _isMessageSetOnSession($message)
+    {
+        foreach ($this->_getCustomerSessionNotices() as $messageToCheck) {
+            if ($messageToCheck->getCode() === $message) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return Mage_Core_Model_Message_Abstract[]
+     */
+    private function _getCustomerSessionNotices()
+    {
+        return Mage::getSingleton('customer/session')->getMessages()->getItems('notice');
     }
 
     /**
@@ -324,7 +344,8 @@ class Netzarbeiter_LoginCatalog_Model_Observer
      */
     private function _shouldRewriteOldNavigationBlock()
     {
-        return version_compare(Mage::getVersion(), '1.7', '<') && Mage::helper('logincatalog')->shouldHideCategoryNavigation();
+        return version_compare(Mage::getVersion(), '1.7',
+            '<') && Mage::helper('logincatalog')->shouldHideCategoryNavigation();
     }
 
     /**
