@@ -212,6 +212,7 @@ class Netzarbeiter_LoginCatalog_Model_Observer
             $this->_requestedRouteMatches(array('customer', 'account', 'loginPost')) ||
             $this->_requestedRouteMatches(array('customer', 'account', 'create')) ||
             $this->_requestedRouteMatches(array('customer', 'account', 'createPost')) ||
+	    $this->_requestedRouteMatches(array('customer', 'account', 'logoutSuccess')) ||
             $this->_requestedRouteMatches(array('customer', 'account', 'forgotpassword')) ||
             $this->_requestedRouteMatches(array('customer', 'account', 'forgotpasswordPost'));
     }
